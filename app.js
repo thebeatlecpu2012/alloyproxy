@@ -77,7 +77,7 @@
   } else return next();
   });
 
-  app.use(`${config.prefix}utils/`, async(req, res, next) => {
+  app.use(`${config.prefix}/fetch/utils/`, async(req, res, next) => {
       if (req.url.startsWith('/assets/')){res.sendFile(__dirname + '/utils' + req.url);}
      if (req.query.url) {
         let url = atob(req.query.url);
