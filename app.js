@@ -1,4 +1,4 @@
-  const express = require('express'),
+const express = require('express'),
   app = express(),
   http = require('http'),
   https = require('https'),
@@ -77,7 +77,7 @@
   } else return next();
   });
 
-  app.use(`${config.prefix}/fetch/utils/`, async(req, res, next) => {
+  app.use(`${config.prefix}utils/`, async(req, res, next) => {
       if (req.url.startsWith('/assets/')){res.sendFile(__dirname + '/utils' + req.url);}
      if (req.query.url) {
         let url = atob(req.query.url);
@@ -92,7 +92,7 @@
         }
   });
 
-  app.post(`${config.prefix}fetch/utils`, async(req, res, next) => {
+  app.post(`${config.prefix}session/`, async(req, res, next) => {
      let url = querystring.parse(req.raw_body).url;
      if (url.startsWith('//')) { url = 'http:' + url; }
      else if (url.startsWith('https://') || url.startsWith('http://')) { url = url }
